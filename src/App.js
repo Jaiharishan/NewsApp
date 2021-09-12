@@ -1,7 +1,11 @@
+import { Button } from 'react-bootstrap';
 import NewsList from './components/NewsList';
 import Api from './components/Api';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Navbar from './components/Navbar'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 
 function App() {
 
@@ -27,19 +31,34 @@ function App() {
     loadNews(`https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=${Api.key}`, setEntertainmentNews);
     loadNews(`https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=${Api.key}`, setHealthNews);
   }, [])
+  const topics = {
+    'Recent': '/',
+    'Business': '/Business',
+    'Technology': '/Tech',
+    'Entertainment': '/Entertainment',
+    'Sports': '/Sports',
+
+  }
+
+  return (
+    <div>
+      <Navbar topics={topics} />
+
+      <Router>
+
+        <Switch>
+          <Route path='/' exact><NewsList header={'Recent'} news={recentNews} /></Route>
+          <Route path='/Business'><NewsList header={'Business'} news={businessnews} /></Route>
+          <Route path='/Sports'><NewsList header={'Sports'} news={sportsnews} /></Route>
+          <Route path='/Tech'><NewsList header={'Tech'} news={technews} /></Route>
+          <Route path='/Entertainment'><NewsList header={'Entertainment'} news={entertainmentnews} /></Route>
+        </Switch>
+
+      </Router>
 
 
-
-    return (
-        <div>
-            <NewsList header = {'Recent'} news = {recentNews} color= {'blue'} />
-            <NewsList header = {'Business'} news = {businessnews}  color = {'orange'}/>
-            <NewsList header = {'Sports'} news = {sportsnews} color = {'steelblue'} />
-            <NewsList header = {'Tech'} news = {technews} color = {'tomato'}/>
-            <NewsList header = {'Entertainment'} news = {entertainmentnews} color={'darkblue'} />
-            <NewsList header = {'Health'} news = {healthnews} color = {'red'}/>
-        </div>
-      )
+    </div>
+  )
 }
 
 export default App;
