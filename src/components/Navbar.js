@@ -1,19 +1,35 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-function Navbar() {
+import 'react-bootstrap';
+
+import { BrowserRouter as Router, Link } from 'react-router-dom'
+function Navbar({ topics }) {
     return (
-        <nav className="navbar navbar-light bg-light">
-            <div className="container-fluid">
+        <nav classNameName="navbar navbar-light bg-light">
+            <div classNameName="container-fluid">
                 <Router>
-                    <Link to='/' className="navbar-brand">
+                    <Link to='/' classNameName="navbar-brand">
                         News app
                         {/* Use logo */}
                     </Link>
+                    <div className=" navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav">
+                            {Object.keys(topics).map(topic => {
+
+                                return <li className="nav-item">
+                                    <Link to={topics[topic]}>{topic}</Link>
+                                </li>
+
+                            })}
+
+
+                        </ul>
+                    </div>
+
                 </Router>
 
-                <form className="d-flex">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button className="btn btn-outline-success" type="submit">Search</button>
+                <form classNameName="d-flex">
+                    <input classNameName="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button classNameName="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
         </nav>

@@ -4,6 +4,7 @@ import Api from './components/Api';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from './components/Navbar'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 function App() {
@@ -30,16 +31,31 @@ function App() {
 
     loadNews(`https://gnews.io/api/v4/top-headlines?lang=en&topic=entertainment&token=${Api.key}`, setEntertainmentNews);
   }, [])
+  const topics = {
+    'Recent': '/',
+    'Business': '/Business',
+    'Technology': '/Tech',
+    'Entertainment': '/Entertainment',
+    'Sports': '/Sports',
 
+  }
 
   return (
     <div>
-      <Navbar />
-      <NewsList header={'Recent'} news={recentNews} />
-      <NewsList header={'Business'} news={businessnews} />
-      <NewsList header={'Sports'} news={sportsnews} />
-      <NewsList header={'Tech'} news={technews} />
-      <NewsList header={'Entertainment'} news={entertainmentnews} />
+
+
+      <Router>
+        <Navbar topics={topics} />
+        <Switch>
+          <Route path='/' exact><NewsList header={'Recent'} news={recentNews} /></Route>
+          <Route path='/Business'><NewsList header={'Business'} news={businessnews} /></Route>
+          <Route path='/Sports'><NewsList header={'Sports'} news={sportsnews} /></Route>
+          <Route path='/Tech'><NewsList header={'Tech'} news={technews} /></Route>
+          <Route path='/Entertainment'><NewsList header={'Entertainment'} news={entertainmentnews} /></Route>
+        </Switch>
+
+      </Router>
+
 
     </div>
   )
