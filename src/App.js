@@ -1,9 +1,9 @@
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import NewsList from './components/NewsList';
 import Api from './components/Api';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import Navbar from './components/Navbar'
 
 function App() {
 
@@ -16,19 +16,20 @@ function App() {
       })
     };
 
-    
+
     loadNews();
   }, [])
 
 
-    return (
-        <div>
-            <Button>News Application</Button>
+  return (
+    <div>
+      <Navbar />
+      <Button>News Application</Button>
 
-            <NewsList news = {news} />
-            
-        </div>
-      )
+      <NewsList news={news} />
+
+    </div>
+  )
 }
 
 export default App;
