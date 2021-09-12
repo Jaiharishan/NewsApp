@@ -26,40 +26,23 @@ function App() {
 
     loadNews(`https://gnews.io/api/v4/top-headlines?lang=en&topic=sports&token=${Api.key}`, setSportsNews);
 
-<<<<<<< HEAD
-
-    loadNews();
-  }, [])
-
-
-  return (
-    <div>
-      <Navbar />
-      <Button>News Application</Button>
-
-      <NewsList news={news} />
-
-    </div>
-  )
-=======
     loadNews(`https://gnews.io/api/v4/top-headlines?lang=en&topic=technology&token=${Api.key}`, setTechNews);
 
     loadNews(`https://gnews.io/api/v4/top-headlines?lang=en&topic=entertainment&token=${Api.key}`, setEntertainmentNews);
   }, [])
 
 
-    return (
-        <div>
+  return (
+    <div>
+      <Navbar />
+      <NewsList header={'Recent'} news={recentNews} />
+      <NewsList header={'Business'} news={businessnews} />
+      <NewsList header={'Sports'} news={sportsnews} />
+      <NewsList header={'Tech'} news={technews} />
+      <NewsList header={'Entertainment'} news={entertainmentnews} />
 
-            <NewsList header = {'Recent'} news = {recentNews} />
-            <NewsList header = {'Business'} news = {businessnews} />
-            <NewsList header = {'Sports'} news = {sportsnews} />
-            <NewsList header = {'Tech'} news = {technews} />
-            <NewsList header = {'Entertainment'} news = {entertainmentnews} />
-
-        </div>
-      )
->>>>>>> 84fcdae629bb2d1a8d4ee14336b2dd9ab301071f
+    </div>
+  )
 }
 
 export default App;
