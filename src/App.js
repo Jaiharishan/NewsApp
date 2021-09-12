@@ -35,7 +35,7 @@ function App() {
     return (
         <div>
 
-            <NewsList header = {'Recent News'} news = {recentNews} />
+            <NewsList header = {'Recent'} news = {recentNews} />
             <NewsList header = {'Business'} news = {businessnews} />
             <NewsList header = {'Sports'} news = {sportsnews} />
             <NewsList header = {'Tech'} news = {technews} />
