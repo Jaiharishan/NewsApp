@@ -42,10 +42,10 @@ function App() {
 
   return (
     <div>
-
+      <Navbar topics={topics} />
 
       <Router>
-        <Navbar topics={topics} />
+
         <Switch>
           <Route path='/' exact><NewsList header={'Recent'} news={recentNews} /></Route>
           <Route path='/Business'><NewsList header={'Business'} news={businessnews} /></Route>
